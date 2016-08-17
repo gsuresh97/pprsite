@@ -1,0 +1,53 @@
+{% load static %}
+<html>
+
+	<head>
+		<title>Blockly PPR</title>
+		<script src="{% static 'interface/blockly/appengine/storage.js' %}"></script>
+		<script src="{% static 'interface/blockly/blockly_compressed.js' %}"></script>
+		<script src="{% static 'interface/blockly/blocks_compressed.js' %}"></script>
+		<script src="{% static 'interface/blockly/javascript_compressed.js' %}"></script>
+		<script src="{% static 'interface/blockly/msg/js/en.js' %}"></script>
+		<script src="{% static 'interface/download.js' %}"></script>
+		<script src="{% static 'interface/save.js' %}"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'interface/styles.css' %}">
+		<script src="{% static 'interface/blocks.js' %}"></script>
+
+
+	</head>
+
+	<body>
+		<div class="toolbar" id="toolbar">
+			<div class="title">
+				Make new blocks from existing blocks
+			</div>
+			<a class="link" href="..">
+				Blockly Primitives
+			</a>
+			<div class="dropdown">
+				<div class="dropbtn">File</div>
+				<div class="dropdown-content">
+					<button id="save" class="hide" onclick="BlocklyStorage.link()"></button>
+					<label for="save" class="menuitem">
+						Save
+					</label>
+
+					<button class="hide" id="download" onclick="downloadCCSession()"></button>
+					<label for="download" class="menuitem">
+						Download Code
+					</label>
+
+					<input class="hide" type="file" id="input" onchange="uploadCCSession(this.files)">
+					<label for="input" class="menuitem">
+						Upload Code
+					</label>
+				</div>
+			</div>
+		</div>
+		<div id="blocklyDiv"></div>
+		<div id="createdDiv" hidden="true"></div>
+
+		<script src="{% static 'interface/init.js' %}"></script>
+	</body>
+
+</html>

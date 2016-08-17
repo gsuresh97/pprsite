@@ -1,0 +1,1402 @@
+System check identified no issues (0 silenced).
+August 07, 2016 - 17:21:08
+Django version 1.9.7, using settings 'pprsite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+BlocklyStorage instantiated
+-------------------------------------------------doubleGet
+{'name': 'Component.get1'}
+{'name': 'Component.get2'}
+{}
+Error in attach:
+('get1', 'outStr') <svggen.library.GetString.GetString object at 0x10ea5ebd0>.Component.get1
+('get2', 'outStr') <svggen.library.GetString.GetString object at 0x10eaa5b90>.Component.get2
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 436, in make
+    self.evalConnections()   # Tell composables which interfaces are connected
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 425, in evalConnections
+    (toComponent, toPort), kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 343, in attach
+    composable.attach(port1, port2, kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/composables/CppComposable.py", line 116, in attach
+    raise Exception(" %s cannot mate with %s!" % (fromPort.__class__.__name__, toPort.__class__.__name__))
+Exception:  OutStringPort cannot mate with OutStringPort!
+
+-------------------------------------------------EServo
+KeyError
+-------------------------------------------------SegTail
+{}
+{'name': 'Component.mount'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/SegTail.py", line 16, in define
+    self.addSubcomponent("beam", "Servo", inherit=True, prefix=None)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 23, in getSubcomponentObject
+    c = Component(component, name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 96, in _fromYaml
+    self.addSubcomponent(name, value["class"], **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/FoldedComponent.py", line 8, in __init__
+    MechanicalComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/RectBeam.py", line 16, in define
+    self.addConstant("tangle", 90, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------PointedLeg
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------ActuatedGripper
+KeyError
+-------------------------------------------------Gripper
+KeyError
+-------------------------------------------------DoubleBeam
+{}
+{'phase': 0, 'shape': 3, 'name': 'DoubleBeam.leg1'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/DoubleBeam.py", line 18, in define
+    self.addSubcomponent("leg1", "Beam", shape=self.getParameter("shape"), phase=self.getParameter("phase"))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/FoldedComponent.py", line 8, in __init__
+    MechanicalComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/Beam.py", line 17, in define
+    self.addConstant("shape", 3, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------BeamConstrained
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+AttributeError: 'module' object has no attribute 'BeamConstrained'
+
+-------------------------------------------------FixedLegs
+{'splits': [3, 1], 'name': 'Component.barsplit'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 96, in _fromYaml
+    self.addSubcomponent(name, value["class"], **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/FoldedComponent.py", line 8, in __init__
+    MechanicalComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/SplitEdge.py", line 17, in define
+    self.addConstant("splits", (1,1), **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------Simulation
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------SegDistanceSensor
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name distanceSensor.controllerPin
+
+-------------------------------------------------PrintLength
+{'name': 'Component.print'}
+{'name': 'Component.itoStr'}
+{'name': 'Component.len'}
+{'name': 'Component.string1', 'contents': 'Hello World!'}
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------SmallAntLegs
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name leg.beamwidth
+
+-------------------------------------------------TwoServoMount
+{}
+{'name': 'TwoServoMount.beam'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/TwoServoMount.py", line 14, in define
+    self.addSubcomponent("beam", "RectBeam")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/FoldedComponent.py", line 8, in __init__
+    MechanicalComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/RectBeam.py", line 16, in define
+    self.addConstant("tangle", 90, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------MultiReverse
+{'NumStrings': 3, 'name': 'Component.concatenate'}
+{'name': 'Component.reverse_string1'}
+{'name': 'Component.reverse_string3'}
+{'name': 'Component.reverse_string2'}
+{'name': 'Component.print'}
+{'name': 'Component.string2', 'contents': 'dlroW'}
+{'name': 'Component.string3', 'contents': 'n\\!!!!!'}
+{'name': 'Component.string1', 'contents': ' olleH'}
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------CrabFull
+{}
+{'name': 'CrabFull.leg1', 'inherit': True}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/CrabFull.py", line 22, in define
+    self.addSubcomponent("leg1", "BeamBasic", inherit=True)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+TypeError: define() got an unexpected keyword argument 'name'
+
+-------------------------------------------------ReverseString
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------FourBarLegs
+{}
+{'name': 'FourBarLegs.spacer1'}
+{'name': 'FourBarLegs.spacer2'}
+{'name': 'FourBarLegs.fakeleg'}
+{'name': 'FourBarLegs.linkage1'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/FourBarLegs.py", line 23, in define
+    self.addSubcomponent("linkage1", "FourBar")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+TypeError: define() got an unexpected keyword argument 'name'
+
+-------------------------------------------------Arm
+KeyError
+-------------------------------------------------BluetoothModule
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name RX.controllerPin
+
+-------------------------------------------------BipedFoot
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/BipedFoot.py", line 17, in define
+    self.addInterface("heel", EdgePort(self, None))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ports/EdgePort.py", line 8, in __init__
+    graph = parent.getGraph()
+AttributeError: 'BipedFoot' object has no attribute 'getGraph'
+
+-------------------------------------------------EServoDriver
+{}
+Error: Target Not Supported!
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 437, in make
+    self.assemble()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/EServoDriver.py", line 18, in assemble
+    self.addCodeFile('code/servo_angle.cpp')
+AttributeError: 'EServoDriver' object has no attribute 'addCodeFile'
+
+-------------------------------------------------Cutout
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------AnalogSensor
+KeyError
+-------------------------------------------------MotorMount
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/MotorMount.py", line 20, in __init__
+    Component.__init__(self)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/MotorMount.py", line 33, in define
+    self.addInterface("topface", FacePort(self, None))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ports/FacePort.py", line 5, in __init__
+    self.face = parent.getGraph().getFace(face)
+AttributeError: 'MotorMount' object has no attribute 'getGraph'
+
+-------------------------------------------------Seg
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name curPosition.autoPoll
+
+-------------------------------------------------BluetoothModuleDevice
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/BluetoothModuleDevice.py", line 10, in define
+    self.addInterface('TX', SerialTXPort(parent=self, name='TX'))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ElectricalComponent.py", line 11, in addInterface
+    self.addParameter(name + '.controllerPin')
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name TX.controllerPin
+
+-------------------------------------------------LineDetector
+KeyError
+-------------------------------------------------Brains
+{}
+{'name': 'Brains.beam'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/Brains.py", line 14, in define
+    self.addSubcomponent("beam", "RectBeam")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/FoldedComponent.py", line 8, in __init__
+    MechanicalComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/RectBeam.py", line 16, in define
+    self.addConstant("tangle", 90, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------Len
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------DistanceSensorDriver
+{}
+Error: Target Not Supported!
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 437, in make
+    self.assemble()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/DistanceSensorDriver.py", line 14, in assemble
+    self.addCodeFile('code/distance_sensor.cpp')
+AttributeError: 'DistanceSensorDriver' object has no attribute 'addCodeFile'
+
+-------------------------------------------------FourBarLinkage
+{'name': 'Component.l2'}
+{'name': 'Component.l0'}
+{'name': 'Component.l1'}
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------Link
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------LEDDevice
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/LEDDevice.py", line 12, in define
+    self.addInterface('signal', DigitalInputPort(parent=self, name='signal'))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ElectricalComponent.py", line 11, in addInterface
+    self.addParameter(name + '.controllerPin')
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name signal.controllerPin
+
+-------------------------------------------------ReverseSort
+{'name': 'Component.reverse_string'}
+{'name': 'Component.sort_string'}
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------SortHello
+{'name': 'Component.print_string'}
+{'name': 'Component.string', 'contents': 'Hello World!\\n'}
+{'name': 'Component.sort_string'}
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------ArmLink
+{'name': 'Component.beam'}
+{'name': 'Component.servo'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 96, in _fromYaml
+    self.addSubcomponent(name, value["class"], **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/ServoDevice.py", line 17, in define
+    cont = self.addConstant("continuous", False, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------Extension
+{'name': 'Component.top'}
+{'name': 'Component.bot'}
+{}
+KeyError
+-------------------------------------------------DrivenWheel
+{'name': 'Component.wheel', 'n': 6}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 96, in _fromYaml
+    self.addSubcomponent(name, value["class"], **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/Wheel.py", line 13, in __init__
+    FoldedComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/FoldedComponent.py", line 8, in __init__
+    MechanicalComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/Wheel.py", line 18, in define
+    self.GRAPH = self.addConstant("label", "wheel%d" % self.index, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------AnalogSensorDriver
+{}
+Error: Target Not Supported!
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 437, in make
+    self.assemble()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/AnalogSensorDriver.py", line 14, in assemble
+    self.addCodeFile('code/analog_sensor.cpp')
+AttributeError: 'AnalogSensorDriver' object has no attribute 'addCodeFile'
+
+-------------------------------------------------Hinge
+KeyError
+-------------------------------------------------IntToString
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------SortString
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------TypeError
+{'name': 'Component.print'}
+{'name': 'Component.len'}
+{'name': 'Component.string1', 'contents': 'Hello World!'}
+{}
+Error in attach:
+('len', 'outInt') <svggen.library.Len.Len object at 0x10f353310>.Component.len
+('print', 'inStr') <svggen.library.PrintString.PrintString object at 0x10f353210>.Component.print
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 436, in make
+    self.evalConnections()   # Tell composables which interfaces are connected
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 425, in evalConnections
+    (toComponent, toPort), kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 343, in attach
+    composable.attach(port1, port2, kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/composables/CppComposable.py", line 116, in attach
+    raise Exception(" %s cannot mate with %s!" % (fromPort.__class__.__name__, toPort.__class__.__name__))
+Exception:  OutIntPort cannot mate with InStringPort!
+
+-------------------------------------------------ConcatenateString
+{}
+KeyError
+-------------------------------------------------PutString
+{'name': 'Component.string', 'contents': 'Hello World!\\n'}
+{'name': 'Component.print_string'}
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------ReverseHello
+{'name': 'Component.reverse_string'}
+{'name': 'Component.string', 'contents': 'Hello World!\\n'}
+{'name': 'Component.print_string'}
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------PrintString
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------LineDetectorDriver
+{}
+Error: Target Not Supported!
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 437, in make
+    self.assemble()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/LineDetectorDriver.py", line 14, in assemble
+    self.addCodeFile('code/lineDetector.cpp')
+AttributeError: 'LineDetectorDriver' object has no attribute 'addCodeFile'
+
+-------------------------------------------------LegPair
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/LegPair.py", line 20, in __init__
+    Component.__init__(self, "LegPair.yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name leg.beamwidth
+
+-------------------------------------------------ReducedSeg
+{'name': 'Component.beam'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 96, in _fromYaml
+    self.addSubcomponent(name, value["class"], **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/FoldedComponent.py", line 8, in __init__
+    MechanicalComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/RectBeam.py", line 16, in define
+    self.addConstant("tangle", 90, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------TJoint
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/TJoint.py", line 20, in define
+    self.addInterface("stemedge", EdgePort(self, None))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ports/EdgePort.py", line 8, in __init__
+    graph = parent.getGraph()
+AttributeError: 'TJoint' object has no attribute 'getGraph'
+
+-------------------------------------------------Arduino
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 27, in getComponent
+    obj.setName(v)
+AttributeError: Arduino instance has no attribute 'setName'
+
+-------------------------------------------------DataFunction
+{}
+Error: Target Not Supported!
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 437, in make
+    self.assemble()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/DataFunction.py", line 24, in assemble
+    function = 'input' if (function is None or len(function) == 0) else function
+TypeError: object of type 'Dummy' has no len()
+
+-------------------------------------------------StringSource
+{}
+KeyError
+-------------------------------------------------Finger
+{'name': 'Component.top'}
+{'name': 'Component.bot'}
+{'name': 'Component.ext'}
+KeyError
+-------------------------------------------------AnalogSensorDevice
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/AnalogSensorDevice.py", line 11, in define
+    self.addInterface('signal', AnalogOutputPort(parent=self, name='signal'))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ElectricalComponent.py", line 11, in addInterface
+    self.addParameter(name + '.controllerPin')
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name signal.controllerPin
+
+-------------------------------------------------Rectangle
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------TBar
+KeyError
+-------------------------------------------------doublePrint
+{'name': 'Component.print1'}
+{'name': 'Component.print2'}
+{}
+Error in attach:
+('print1', 'inStr') <svggen.library.PrintString.PrintString object at 0x10f3596d0>.Component.print1
+('print2', 'inStr') <svggen.library.PrintString.PrintString object at 0x10f2c1050>.Component.print2
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 436, in make
+    self.evalConnections()   # Tell composables which interfaces are connected
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 425, in evalConnections
+    (toComponent, toPort), kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 343, in attach
+    composable.attach(port1, port2, kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/composables/CppComposable.py", line 116, in attach
+    raise Exception(" %s cannot mate with %s!" % (fromPort.__class__.__name__, toPort.__class__.__name__))
+Exception:  InStringPort cannot mate with InStringPort!
+
+-------------------------------------------------Microcontroller
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 27, in getComponent
+    obj.setName(v)
+AttributeError: Microcontroller instance has no attribute 'setName'
+
+-------------------------------------------------BipedFull
+{}
+{'name': 'BipedFull.leftfoot', 'inherit': True}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/BipedFull.py", line 12, in define
+    self.addSubcomponent("leftfoot", "BipedFoot", inherit=True)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+TypeError: define() got an unexpected keyword argument 'name'
+
+-------------------------------------------------ServoMount
+{}
+{'name': 'ServoMount.beam'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/ServoMount.py", line 15, in define
+    self.addSubcomponent("beam", "RectBeam")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/FoldedComponent.py", line 8, in __init__
+    MechanicalComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/RectBeam.py", line 16, in define
+    self.addConstant("tangle", 90, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------ActuatedHinge
+KeyError
+-------------------------------------------------PrintStringArg
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 73, in _fromYaml
+    definition = load_yaml(filename)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/utils/io.py", line 12, in load_yaml
+    with open(fqn, 'r') as fd:
+IOError: [Errno 2] No such file or directory: '/Users/family/Sites/pprsite/interface/ppr/svggen/library/PrintStringArg.yaml'
+
+-------------------------------------------------ControlledServo
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name newPosition.autoPoll
+
+-------------------------------------------------LineDetectorDevice
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/LineDetectorDevice.py", line 12, in define
+    self.addInterface('ledSignal', DigitalInputPort(parent=self, name='ledSignal'))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ElectricalComponent.py", line 11, in addInterface
+    self.addParameter(name + '.controllerPin')
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name ledSignal.controllerPin
+
+-------------------------------------------------HornMount
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------Tetrahedron
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/Tetrahedron.py", line 28, in define
+    self.addInterface("endedge%d" % i, EdgePort(self, None))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ports/EdgePort.py", line 8, in __init__
+    graph = parent.getGraph()
+AttributeError: 'Tetrahedron' object has no attribute 'getGraph'
+
+-------------------------------------------------ServoDevice
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------Bumper
+{}
+{'name': 'Bumper.beam', 'faces': [0, 1, 2, 3]}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/Bumper.py", line 7, in define
+    self.addSubcomponent("beam", "RectBeam", faces=range(4))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/FoldedComponent.py", line 8, in __init__
+    MechanicalComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/RectBeam.py", line 16, in define
+    self.addConstant("tangle", 90, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------TwoFourBarLegs
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name leg.beamwidth
+
+-------------------------------------------------RemoveSubString
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 73, in _fromYaml
+    definition = load_yaml(filename)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/utils/io.py", line 12, in load_yaml
+    with open(fqn, 'r') as fd:
+IOError: [Errno 2] No such file or directory: '/Users/family/Sites/pprsite/interface/ppr/svggen/library/RemoveSubString.yaml'
+
+-------------------------------------------------DistanceSensorDevice
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/DistanceSensorDevice.py", line 11, in define
+    self.addInterface('signal', AnalogInputPort(parent=self, name='signal'))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ElectricalComponent.py", line 11, in addInterface
+    self.addParameter(name + '.controllerPin')
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name signal.controllerPin
+
+-------------------------------------------------EServoDevice
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/EServoDevice.py", line 11, in define
+    self.addInterface('output', ServoOutputPort(parent=self, name='output'))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ElectricalComponent.py", line 11, in addInterface
+    self.addParameter(name + '.controllerPin')
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name output.controllerPin
+
+-------------------------------------------------LED
+KeyError
+-------------------------------------------------LEDDriver
+{}
+Error: Target Not Supported!
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 437, in make
+    self.assemble()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/LEDDriver.py", line 17, in assemble
+    self.addCodeFile('code/led_digital.cpp')
+AttributeError: 'LEDDriver' object has no attribute 'addCodeFile'
+
+-------------------------------------------------Ant
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name leg.beamwidth
+
+-------------------------------------------------Header
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 437, in make
+    self.assemble()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/Header.py", line 27, in assemble
+    for i in range(self.getParameter("nrows")):
+  File "/usr/local/lib/python2.7/site-packages/sympy/core/expr.py", line 195, in __int__
+    r = self.round(2)
+  File "/usr/local/lib/python2.7/site-packages/sympy/core/expr.py", line 3159, in round
+    mag_first_dig = _mag(x)
+  File "/usr/local/lib/python2.7/site-packages/sympy/core/expr.py", line 3239, in _mag
+    mag_first_dig = int(ceil(log10(xpos)))
+  File "/usr/local/lib/python2.7/site-packages/sympy/core/expr.py", line 226, in __float__
+    raise TypeError("can't convert expression to float")
+TypeError: can't convert expression to float
+
+-------------------------------------------------SmallAnt
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/SmallAnt.py", line 9, in __init__
+    Component.__init__(self, "SmallAnt.yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name leg.beamwidth
+
+-------------------------------------------------UISlider
+{}
+Error: Target Not Supported!
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------FourBarDoubleLeg
+{}
+{'name': 'FourBarDoubleLeg.fakelegmount'}
+{'name': 'FourBarDoubleLeg.fakeleg'}
+{'name': 'FourBarDoubleLeg.spacer'}
+{'prefix': None, 'name': 'FourBarDoubleLeg.linkage', 'inherit': ('depth', 'flexwidth', 'flexlengthx')}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/FourBarDoubleLeg.py", line 24, in define
+    self.addSubcomponent("linkage", "FourBar", inherit=("depth", "flexwidth", "flexlengthx"), prefix=None)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+TypeError: define() got an unexpected keyword argument 'prefix'
+
+-------------------------------------------------FourBar
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/FourBar.py", line 22, in define
+    self.addInterface("topedge", EdgePort(self, None))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ports/EdgePort.py", line 8, in __init__
+    graph = parent.getGraph()
+AttributeError: 'FourBar' object has no attribute 'getGraph'
+
+-------------------------------------------------SegBase
+{'name': 'Component.tail'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 96, in _fromYaml
+    self.addSubcomponent(name, value["class"], **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+TypeError: define() got an unexpected keyword argument 'name'
+
+-------------------------------------------------Crab
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/Crab.py", line 18, in define
+    self.addInterface("leg1", EdgePort(self, None))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ports/EdgePort.py", line 8, in __init__
+    graph = parent.getGraph()
+AttributeError: 'Crab' object has no attribute 'getGraph'
+
+-------------------------------------------------Wheel
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------RectBeam
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------BeamBasic
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/BeamBasic.py", line 15, in define
+    self.addInterface("topedge", EdgePort(self, None))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ports/EdgePort.py", line 8, in __init__
+    graph = parent.getGraph()
+AttributeError: 'BeamBasic' object has no attribute 'getGraph'
+
+-------------------------------------------------GetString
+{}
+GetString is being read as a PYTHON file
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------removeAndPut
+{'name': 'Component.str2', 'contents': 'llo W'}
+{'name': 'Component.str1', 'contents': 'Hello World'}
+{'name': 'Component.printString'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 96, in _fromYaml
+    self.addSubcomponent(name, value["class"], **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 23, in getSubcomponentObject
+    c = Component(component, name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 73, in _fromYaml
+    definition = load_yaml(filename)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/utils/io.py", line 12, in load_yaml
+    with open(fqn, 'r') as fd:
+IOError: [Errno 2] No such file or directory: '/Users/family/Sites/pprsite/interface/ppr/svggen/library/RemoveSubString.yaml'
+
+-------------------------------------------------Beam
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------TwoMovingLegs
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/TwoMovingLegs.py", line 19, in __init__
+    Component.__init__(self, "TwoMovingLegs.yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name leg.beamwidth
+
+-------------------------------------------------ConcatenateHello
+{'NumStrings': 3, 'name': 'Component.concatenate'}
+{'name': 'Component.print_string'}
+{'name': 'Component.string2', 'contents': 'World'}
+{'name': 'Component.string3', 'contents': '!!!!!\\n'}
+{'name': 'Component.string1', 'contents': 'Hello '}
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------PutReverseSort
+{'name': 'Component.print_string'}
+{'name': 'Component.reverse_string'}
+{'name': 'Component.sort_string'}
+{'name': 'Component.reverse_sort'}
+{'name': 'Component.string', 'contents': 'Hello World!\n'}
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------ReducedArm
+{'name': 'Component.beam'}
+{'name': 'Component.servo'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 96, in _fromYaml
+    self.addSubcomponent(name, value["class"], **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 23, in getSubcomponentObject
+    c = Component(component, name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 96, in _fromYaml
+    self.addSubcomponent(name, value["class"], **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/ServoDevice.py", line 17, in define
+    cont = self.addConstant("continuous", False, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------Servo
+{'name': 'Component.mount'}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 96, in _fromYaml
+    self.addSubcomponent(name, value["class"], **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 147, in addSubcomponent
+    self.resolveSubcomponent(name)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 381, in resolveSubcomponent
+    c, name=prefixString(self.getName(), name), **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 20, in getSubcomponentObject
+    c = obj(name=name, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/FoldedComponent.py", line 8, in __init__
+    MechanicalComponent.__init__(self, *args, **kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/RectBeam.py", line 16, in define
+    self.addConstant("tangle", 90, **kwargs)
+TypeError: addConstant() got multiple values for keyword argument 'name'
+
+-------------------------------------------------MovingLegs
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/MovingLegs.py", line 22, in __init__
+    Component.__init__(self, "MovingLegs.yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name leg.beamwidth
+
+-------------------------------------------------DoubleBeam2
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+AttributeError: 'module' object has no attribute 'DoubleBeam2'
+
+-------------------------------------------------ControlledLED
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name toggle.autoPoll
+
+-------------------------------------------------BipedSide
+{}
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 48, in __init__
+    self.define(**kwargs)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/BipedSide.py", line 18, in define
+    self.addInterface("foot", EdgePort(self, None))
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/ports/EdgePort.py", line 8, in __init__
+    graph = parent.getGraph()
+AttributeError: 'BipedSide' object has no attribute 'getGraph'
+
+-------------------------------------------------UIToggle
+{}
+Error: Target Not Supported!
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 437, in make
+    self.assemble()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/UIToggle.py", line 15, in assemble
+    self.setAutoPolls()
+AttributeError: 'UIToggle' object has no attribute 'setAutoPolls'
+
+-------------------------------------------------Fulcrum
+KeyError
+-------------------------------------------------SegLineDetector
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 23, in getComponent
+    os.path.dirname(__file__)) + "/" + c + ".yaml")
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 39, in __init__
+    self._fromYaml(yamlFile)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 79, in _fromYaml
+    self.addParameter(name, default)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/Parameterized.py", line 36, in addParameter
+    raise ValueError("Invalid character '.' in parameter name " + name)
+ValueError: Invalid character '.' in parameter name lineDetector.ledControllerPin
+
+-------------------------------------------------SplitEdge
+{}
+---------------------------------------------Instance of CodeComponent:False
+
+
+-------------------------------------------------GetAndPutString
+{'name': 'Component.get_string'}
+{'name': 'Component.print_string'}
+{}
+---------------------------------------------Instance of CodeComponent:True
+
+
+-------------------------------------------------BluetoothModuleDriver
+{}
+Error: Target Not Supported!
+ERROR:root:Traceback (most recent call last):
+  File "/Users/family/Sites/pprsite/interface/views.py", line 56, in prevblocks
+    a = getComponent(comp, name=comp)
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/__init__.py", line 18, in getComponent
+    obj = getattr(mod, c)()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 50, in __init__
+    self.make()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/api/component.py", line 437, in make
+    self.assemble()
+  File "/Users/family/Sites/pprsite/interface/ppr/svggen/library/BluetoothModuleDriver.py", line 11, in assemble
+    self.addCodeFile('code/bluetooth_module.cpp')
+AttributeError: 'BluetoothModuleDriver' object has no attribute 'addCodeFile'
+
+-------------------------------------------------DistanceSensor
+KeyError
+BlocklyStorage instantiated
+[07/Aug/2016 17:38:25] "GET /interface/prevblocks/ HTTP/1.1" 200 1193
+[07/Aug/2016 17:38:26] "GET /static/interface/blockly/appengine/storage.js HTTP/1.1" 304 0
+[07/Aug/2016 17:38:26] "GET /static/interface/blockly/blockly_compressed.js HTTP/1.1" 304 0
+[07/Aug/2016 17:38:26] "GET /static/interface/blockly/blocks_compressed.js HTTP/1.1" 304 0
+[07/Aug/2016 17:38:26] "GET /static/interface/blockly/msg/js/en.js HTTP/1.1" 304 0
+[07/Aug/2016 17:38:26] "GET /static/interface/blockly/javascript_compressed.js HTTP/1.1" 304 0
+[07/Aug/2016 17:38:26] "GET /static/interface/styles.css HTTP/1.1" 304 0
+[07/Aug/2016 17:38:26] "GET /static/interface/download.js HTTP/1.1" 304 0
+[07/Aug/2016 17:38:26] "GET /static/interface/blocks.js HTTP/1.1" 200 4096
+[07/Aug/2016 17:38:26] "GET /static/interface/init.js HTTP/1.1" 200 924

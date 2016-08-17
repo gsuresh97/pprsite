@@ -1,0 +1,6 @@
+dependencies
+
+PyYAML
+sympy
+oct2py
+octave

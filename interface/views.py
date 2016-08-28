@@ -34,9 +34,9 @@ def index(request):
 
 def prevblocks(request):
     c = CustomBlockFile()
-    comps = filterComponents("code")
+    comps = filterDatabase("code")
 
-    buildDatabase(comps)
+    # buildDatabase(comps)
 
     ports = {}
 
@@ -57,7 +57,7 @@ def prevblocks(request):
                     item['in'] = {}
                 # item['in'][k] = v.__class__.__name__
                 item['in'][k] = v
-        ports[i.name] = item
+        ports[i.getName()] = item
     print ports
 
     blockfile = "blocks.js"
@@ -76,7 +76,7 @@ def prevblocks(request):
 
     # Write block.js file that describes blockly blocks.
     for i in comps:
-        blockjs.writeComponent(i.name, ports[i.name])
+        blockjs.writeComponent(i.getName(), ports[i.getName()])
     # blockjs.writeStringSource()
     # blockjs.writeConcatenateString()
     context = {

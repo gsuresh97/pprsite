@@ -34,31 +34,26 @@ def index(request):
 
 def prevblocks(request):
     c = CustomBlockFile()
-    comps = filterDatabase("code")
+    comps = filterDatabase(["electrical", "code"])
+    # print "Number of Components: ", len(comps)
+    # print comps
 
     # buildDatabase(comps)
 
     ports = {}
 
     for i in comps:
-        # print i.getName()
-        # ports['name'] = i.getName()
         item = {}
         for k, v in i.interfaces.iteritems():
-            # print k
-            # print v.getName()
             if "out" in k:
                 if 'out' not in item.keys():
                     item['out'] = {}
-                # item['out'][k] = v.__class__.__name__
                 item['out'][k] = v
             elif "in" in k:
                 if 'in' not in item.keys():
                     item['in'] = {}
-                # item['in'][k] = v.__class__.__name__
                 item['in'][k] = v
         ports[i.getName()] = item
-    print ports
 
     blockfile = "blocks.js"
     initfile = "init.js"
@@ -67,18 +62,12 @@ def prevblocks(request):
     blockjs = CustomBlockFile(blockfile)
 
     # write file that defines the toolbox
-    blockjs.head()
-    for comp in comps:
-        blockjs.writeInit(comp)
-    # blockjs.writeStringSourceInit()
-    # blockjs.writeStringConcatenateInit()
-    blockjs.tail()
+    blockjs.writeInit(comps, ports)
 
     # Write block.js file that describes blockly blocks.
     for i in comps:
         blockjs.writeComponent(i.getName(), ports[i.getName()])
-    # blockjs.writeStringSource()
-    # blockjs.writeConcatenateString()
+    blockjs.finishComponents()
     context = {
         'files': files
     }

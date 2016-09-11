@@ -10,6 +10,8 @@
 		<script src="{% static 'interface/blockly/javascript_compressed.js' %}"></script>
 		<script src="{% static 'interface/blockly/msg/js/en.js' %}"></script>
 		<script src="{% static 'interface/download.js' %}"></script>
+		<script src="{% static 'interface/comps.js' %}"></script>
+		<script src="{% static 'interface/indextoolbox.js' %}"></script>
 		<script src="{% static 'interface/save.js' %}"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'interface/styles.css' %}">
 	</head>
@@ -37,6 +39,29 @@
 			<a class="link" href="prevblocks/">
 				Previously Created Blocks
 			</a>
+
+
+			<div class="dropdown">
+				<div id="target" class="dropbtn">Target</div>
+				<div class="dropdown-content">
+					<button id="none" class="hide" onclick="targetNone()"></button>
+					<label for="none" class="menuitem">
+						None
+					</label>
+
+					<button id="ard" class="hide" onclick="targetArd()"></button>
+					<label for="ard" class="menuitem">
+						Arduino
+					</label>
+
+					<button id="rp" class="hide" onclick="targetRP()"></button>
+					<label for="rp" class="menuitem">
+						Raspberry Pi
+					</label>
+				</div>
+			</div>
+
+
 			<div class="dropdown">
 				<div class="dropbtn">File</div>
 				<div class="dropdown-content">
@@ -63,6 +88,7 @@
 			</div>
 
 		</div>
+		<script src="{% static 'interface/target.js' %}"></script>
 		<div id="blocklyDiv"></div>
 		<div id="createdDiv" hidden="true"></div>
 		<xml id="toolbox" style="display: none">
@@ -72,7 +98,6 @@
 				<block type="logic_operation"></block>
 				<block type="logic_negate"></block>
 				<block type="logic_boolean"></block>
-				<block type="logic_null"></block>
 				<block type="logic_ternary"></block>
 			</category>
 			<category name="Loops" colour="120">
@@ -101,7 +126,6 @@
 						</shadow>
 					</value>
 				</block>
-				<block type="controls_forEach"></block>
 				<block type="controls_flow_statements"></block>
 			</category>
 			<category name="Math" colour="230">
@@ -365,27 +389,30 @@
 					</value>
 				</block>
 			</category>
-			<!-- <sep></sep>
-			<category name="Targets" colour="20" custom="TARGETS">
-				<block type="global_target"></block>
-			</category> -->
 			<sep></sep>
 			<category name="Variables" colour="330" custom="VARIABLE"></category>
 			<category name="Functions" colour="290" custom="PROCEDURE"></category>
-			<!-- <block type="global_target"></block> -->
 		</xml>
+
+		<xml id="startBlocks" style="display: none">
+			<block type="component_create"></block>
+		</xml>
+
 		<script src="{% static 'interface/blocks.js' %}"></script>
 		<script src="{% static 'interface/blockly/msg/js/en.js' %}"></script>
 		<script>
 			var workspace = Blockly.inject('blocklyDiv', {
-				toolbox: document.getElementById('toolbox')
+				toolbox: Toolbox.xmlTree
 			});
 
 			// An href with #key trigers an AJAX call to retrieve saved blocks.
 			if ('BlocklyStorage' in window && window.location.hash.length > 1) {
 				BlocklyStorage.retrieveXml(window.location.hash.substring(1));
 			}
+
+			Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
 		</script>
+		<script src="{% static 'interface/indexevents.js' %}"></script>
 	</body>
 
 </html>

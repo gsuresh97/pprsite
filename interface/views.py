@@ -66,7 +66,7 @@ def prevblocks(request):
 
     # Write block.js file that describes blockly blocks.
     for i in comps:
-        blockjs.writeComponent(i.getName(), ports[i.getName()])
+        blockjs.writeComponent(i, ports[i.getName()])
     blockjs.finishComponents()
     context = {
         'files': files

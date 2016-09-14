@@ -4,15 +4,21 @@
 
 	<head>
 		<title>Blockly PPR</title>
+		<script>
+			var allowDuplicates = true;
+			var rootBlock;
+		</script>
 		<script src="{% static 'interface/blockly/appengine/storage.js' %}"></script>
 		<script src="{% static 'interface/blockly/blockly_compressed.js' %}"></script>
 		<script src="{% static 'interface/blockly/blocks_compressed.js' %}"></script>
 		<script src="{% static 'interface/blockly/javascript_compressed.js' %}"></script>
+		<script src="{% static 'interface/blockly/arduino_compressed.js' %}"></script>
 		<script src="{% static 'interface/blockly/msg/js/en.js' %}"></script>
 		<script src="{% static 'interface/download.js' %}"></script>
 		<script src="{% static 'interface/comps.js' %}"></script>
 		<script src="{% static 'interface/indextoolbox.js' %}"></script>
 		<script src="{% static 'interface/save.js' %}"></script>
+		<script src="{% static 'interface/indexcodegen.js' %}"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'interface/styles.css' %}">
 	</head>
 
@@ -82,7 +88,7 @@
 
 					<button class="hide" id="printCode" onclick="getCode()"></button>
 					<label for="printCode" class="menuitem">
-						Print JS Code
+						Print Arduino Code
 					</label>
 				</div>
 			</div>

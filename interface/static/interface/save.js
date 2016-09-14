@@ -23,8 +23,3 @@ window.onpagehide = function(e) {
     window.alert("here");
     // return "Hello World";
 };
-
-function getCode(){
-    code = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
-    console.log(code);
-}

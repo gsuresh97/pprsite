@@ -5,16 +5,23 @@
 		<title>Blockly PPR</title>
 		<script>
 			var allowDuplicates = false;
+			var rootBlock;
+
 		</script>
 		<script src="{% static 'interface/blockly/appengine/storage.js' %}"></script>
 		<script src="{% static 'interface/blockly/blockly_compressed.js' %}"></script>
+		<script src="{% static 'interface/blockly/core/static_typing.js' %}"></script>
 		<script src="{% static 'interface/blockly/blocks_compressed.js' %}"></script>
 		<script src="{% static 'interface/blockly/javascript_compressed.js' %}"></script>
+		<script src="{% static 'interface/blockly/arduino_compressed.js' %}"></script>
 		<script src="{% static 'interface/blockly/msg/js/en.js' %}"></script>
 		<script src="{% static 'interface/download.js' %}"></script>
+		<script src="{% static 'interface/comps.js' %}"></script>
 		<script src="{% static 'interface/save.js' %}"></script>
+		<script src="{% static 'interface/prevCompCode.js' %}"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'interface/styles.css' %}">
 		<script src="{% static 'interface/blocks.js' %}"></script>
+		<script src="{% static 'interface/prevCodeGen.js' %}"></script>
 
 
 	</head>
@@ -44,11 +51,25 @@
 					<label for="input" class="menuitem">
 						Upload Code
 					</label>
+
+					<button class="hide" id="exportYaml" onclick="exportYaml()"></button>
+					<label for="exportYaml" class="menuitem">
+						Export YAML
+					</label>
+
+					<button class="hide" id="printYaml" onclick="printYaml()"></button>
+					<label for="printYaml" class="menuitem">
+						Print YAML
+					</label>
 				</div>
 			</div>
 		</div>
 		<div id="blocklyDiv"></div>
 		<div id="createdDiv" hidden="true"></div>
+
+		<xml id="startBlocks" style="display: none">
+			<block type="component_create"></block>
+		</xml>
 
 		<script src="{% static 'interface/init.js' %}"></script>
 		<script src="{% static 'interface/prevtoolbox.js' %}"></script>

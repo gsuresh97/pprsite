@@ -21,3 +21,8 @@
     rootBlock = this.rootBlock_;
 
     CHANGE: Added 2 lines.
+
+
+4.  blockly/core
+
+    CHANGE: Added static-typing.js

@@ -11,6 +11,7 @@ Component Block:
     ================make it show up by default      DONE
 
 Previously Created Blocks:
+    limit output blocks to 1;
     ================Disabled duplicating blocks     DONE
     ================fix Deleting blocks             DONE
     ================let blocks be named             DONE
@@ -25,6 +26,9 @@ Previously Created Blocks:
                     blocks without outputs
     ================Block '|' and '\' from          DONE
                     being in names
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Added Ports blocks
+    
 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     FORMAT:

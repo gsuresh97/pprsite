@@ -1,6 +1,8 @@
+var outputCount = {};
+
 function onBlockAddedToWorkspace(event) {
     var block = workspace.getBlockById(event.blockId);
-    if (block && event.type == Blockly.Events.CREATE && block.type.indexOf("|") > 0) {
+    if (block && event.type == Blockly.Events.CREATE && block.type.indexOf("|") > 0 && block.type.indexOf("\\") < 0) {
         var blockName = block.type.substring(0, block.type.indexOf("|"));
         var blockNumber = parseInt(block.type.substring(block.type.indexOf("|") + 1, block.type.length), 10);
         // If the block has outputs
@@ -19,10 +21,36 @@ function onBlockAddedToWorkspace(event) {
                 Toolbox.addEmptyBlock(blockName + "|" + blockNumber + "\\" + i, block.cat);
             }
 
-            // create a new blockly block
-            eval("make" + blockName + "(" + (blockNumber + 1) + ")");
+            //add all the outputs to the counting object, along with a count of 0
+            for (var i = 0; Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i]; i++) {
+                outputCount[blockName + "|" + blockNumber + "\\" + i] = 0;
+            }
+        }
 
-            Toolbox.incrementBlock(blockName, blockNumber, block.category);
+        // create a new blockly block
+        eval("make" + blockName + "(" + (blockNumber + 1) + ")");
+
+        //create a new blockly output block
+        eval("makeOutput" + blockName + "(" + (blockNumber + 1) + ")");
+
+        Toolbox.incrementBlock(blockName, blockNumber, block.category);
+
+    } else if (block && event.type == Blockly.Events.CREATE && block.type.indexOf("\\") > 0) {
+        if (outputCount[block.type] == 0) {
+            outputCount[block.type] = 1;
+            var c;
+            var outs = Toolbox.blocks.childNodes;
+            for(var i =0; i < outs.length; i++){
+                var cat = outs[i].childNodes;
+                var cate = outs[i];
+                for(var j = 0; j < cat.length; j++){
+                    if (cat[j].getAttribute("type") == block.type) {
+                        c = cate;
+                        break;
+                    }
+                }
+            }
+            Toolbox.disableBlock([block.type], c);
         }
     }
 }
@@ -54,6 +82,7 @@ function onBlockNameChange(event) {
                 this.setOutput(true, outType);
                 this.setColour(180);
             };
+            Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i].name = newName;
             Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i].outputType = outType;
             Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i].outputName= outName;
         }
@@ -65,9 +94,12 @@ function onBlockNameChange(event) {
 function onComponentDelete(event){
     if (event.type == Blockly.Events.DELETE) {
         var tree = event.oldXml;
-
+        console.log(tree);
         var block = tree.getAttribute('type');
-        var name = tree.childNodes[0].innerText;
+        var name;
+        if(tree.childNodes[0]){
+            name = tree.childNodes[0].innerText;
+        }
         // if the block is a component block
         if(block.indexOf("\\") < 0 && block.indexOf("|") > 0){
             // nullify current block
@@ -81,12 +113,27 @@ function onComponentDelete(event){
             }
 
             // remove category
-            Toolbox.deleteCategory(name, Toolbox.blocks);
+            if(Toolbox.blocks)
+                Toolbox.deleteCategory(name, Toolbox.blocks);
 
             Toolbox.updateToolbox();
 
+        } else if (block.indexOf('\\')>0) {
+            outputCount[block] = 0;
+            var c;
+            var outs = Toolbox.blocks.childNodes;
+            for(var i =0; i < outs.length; i++){
+                var cat = outs[i].childNodes;
+                var cate = outs[i];
+                for(var j = 0; j < cat.length; j++){
+                    if (cat[j].getAttribute("type") == block) {
+                        c = cate;
+                        break;
+                    }
+                }
+            }
+            Toolbox.enableBlock([block], c);
         }
-        // console.log(event.oldXml);
     }
 }
 

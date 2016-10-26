@@ -8,12 +8,18 @@ function targetRP(){
 }
 
 function targetArd(){
+    try{
+        Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
+    } catch(err){
+        window.alert("Please remove all blocks which are not arduino compatible. These are the ones that are disabled in the toolbar.");
+    }
     target = "Arduino";
     document.getElementById("target").innerHTML = "Target: " + target;
 
     Toolbox.disableBlock(["math_on_list"], Toolbox.mathCategory);
     Toolbox.disableBlock(["text_indexOf", "text_charAt", "text_getSubstring", "text_changeCase", "text_trim", "text_print", "text_prompt_ext"], Toolbox.textCategory);
     Toolbox.disableBlock(["lists_create_with", "lists_create_with", "lists_repeat", "lists_length", "lists_isEmpty", "lists_indexOf", "lists_getIndex", "lists_setIndex", "lists_getSublist", "lists_split", "lists_sort"], Toolbox.listsCategory);
+    Toolbox.enableBlock(["base_map"], Toolbox.mathCategory);
     workspace.updateToolbox(Toolbox.xmlTree);
 }
 
@@ -26,4 +32,6 @@ function targetNone(){
     Toolbox.enableBlock(["text", "text_join", "text_append", "text_length", "text_isEmpty", "text_indexOf", "text_charAt", "text_getSubstring", "text_changeCase", "text_trim", "text_print", "text_prompt_ext"], Toolbox.textCategory);
     Toolbox.enableBlock(["lists_create_with", "lists_create_with", "lists_repeat", "lists_length", "lists_isEmpty", "lists_indexOf", "lists_getIndex", "lists_setIndex", "lists_getSublist", "lists_split", "lists_sort"], Toolbox.listsCategory);
     Toolbox.enableBlock(["colour_picker", "colour_random", "colour_rgb", "colour_blend"], Toolbox.colourCategory);
+    Toolbox.disableBlock(["base_map"], Toolbox.mathCategory);
+    workspace.updateToolbox(Toolbox.xmlTree);
 }

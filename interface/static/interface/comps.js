@@ -194,7 +194,7 @@ Blockly.Blocks['component_create'] = {
                     var paramInput = this.getInput('INP' + j);
                     var paramNameInput = this.getInput('INPUT_NAME' + j);
                     // names.push(paramNameInput);
-                    clauseBlock.valueConnection_ = paramInput && paramInput.connection.targetConnection;
+                    // clauseBlock.valueConnection_ = paramInput && paramInput.connection.targetConnection;
                     j++;
                     break;
                 default:
@@ -218,20 +218,26 @@ Blockly.Blocks['component_create'] = {
         var i = 0;
         while (this.getInput('INP' + i)) {
             this.removeInput('INP' + i);
+            this.removeInput('INP_PORT' + i);
             i++;
         }
         this.removeInput("CODE")
         i = 0;
         while (this.getInput('OUT' + i)) {
             this.removeInput('OUT' + i);
+            this.removeInput('OUT_PORT' + i);
             i++;
         }
         // Rebuild block.
         for (var i = 0; i < this.inputCount; i++) {
-            this.appendValueInput("INP" + i)
-                .setCheck(null)
-                .appendField("Input    ")
-                .appendField(new Blockly.FieldTextInput("name"), "INPUT_NAME" + i);
+            this.appendDummyInput("INP" + i)
+                .appendField("Input ")
+                .appendField(new Blockly.FieldTextInput("name"), "INPUT_NAME" + i)
+                .setAlign(Blockly.ALIGN_RIGHT);;
+            this.appendValueInput("INP_PORT" + i)
+                .setCheck("InputPort")
+                .setAlign(Blockly.ALIGN_RIGHT)
+                .appendField("Input Port Type");
             // .appendField("    Input");
 
         }
@@ -244,6 +250,10 @@ Blockly.Blocks['component_create'] = {
                 .appendField("Output    ")
                 .appendField(new Blockly.FieldTextInput("name"), "OUTPUT_NAME" + i)
                 .appendField("    Value");
+            this.appendValueInput("OUT_PORT" + i)
+                .setCheck("OutputPort")
+                .setAlign(Blockly.ALIGN_RIGHT)
+                .appendField("Output Port Type");
         }
     }
 };

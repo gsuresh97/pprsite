@@ -47,6 +47,7 @@ Toolbox.enableBlock = function(blocks, category) {
 Toolbox.addCategory = function(category, superCategory) {
     var cat = Toolbox.toolboxParser.parseFromString(category, "text/xml").documentElement;
     superCategory.appendChild(cat);
+    return cat;
 };
 Toolbox.addSeperationBefore = function(element, superElement) {
     var sep = Toolbox.toolboxParser.parseFromString("<sep></sep>", "text/xml").documentElement;
@@ -62,7 +63,7 @@ Toolbox.addCategory('<category name="Math" colour="230"></category>', toolboxXML
 Toolbox.addCategory('<category name="Text" colour="160"></category>', toolboxXML);
 Toolbox.addCategory('<category name="Lists" colour="260"></category>', toolboxXML);
 Toolbox.addCategory('<category name="Colour" colour="20"></category>', toolboxXML);
-Toolbox.addCategory('<category name="Variables" colour="330" custom="VARIABLE"></category>', toolboxXML);
+Toolbox.addCategory('<category name="Variables" colour="330"></category>', toolboxXML);
 Toolbox.addCategory('<category name="Functions" colour="290" custom="PROCEDURE"></category>', toolboxXML);
 Toolbox.addCategory('<category name="Component" colour="180"></category>', toolboxXML);
 
@@ -106,6 +107,7 @@ Toolbox.addBlock('<block type="math_modulo"><value name="DIVIDEND"><shadow type=
 Toolbox.addBlock('<block type="math_constrain"><value name="VALUE"><shadow type="math_number"><field name="NUM">50</field></shadow></value><value name="LOW"><shadow type="math_number"><field name="NUM">1</field></shadow></value><value name="HIGH"><shadow type="math_number"><field name="NUM">100</field></shadow></value></block>', Toolbox.mathCategory);
 Toolbox.addBlock('<block type="math_random_int"><value name="FROM"><shadow type="math_number"><field name="NUM">1</field></shadow></value><value name="TO"><shadow type="math_number"><field name="NUM">100</field></shadow></value></block>', Toolbox.mathCategory);
 Toolbox.addBlock('<block type="math_random_float"></block>', Toolbox.mathCategory);
+Toolbox.addBlock('<block type="base_map"></block>', Toolbox.mathCategory);
 
 Toolbox.textCategory = Toolbox.categories[3];
 
@@ -142,6 +144,13 @@ Toolbox.addBlock('<block type="colour_picker"></block>', Toolbox.colourCategory)
 Toolbox.addBlock('<block type="colour_random"></block>', Toolbox.colourCategory);
 Toolbox.addBlock('<block type="colour_rgb"><value name="RED"><shadow type="math_number"><field name="NUM">100</field></shadow></value><value name="GREEN"><shadow type="math_number"><field name="NUM">50</field></shadow></value><value name="BLUE"><shadow type="math_number"><field name="NUM">0</field></shadow></value></block>', Toolbox.colourCategory);
 Toolbox.addBlock('<block type="colour_blend"><value name="COLOUR1"><shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow></value><value name="COLOUR2"><shadow type="colour_picker"><field name="COLOUR">#3333ff</field></shadow></value><value name="RATIO"><shadow type="math_number"><field name="NUM">0.5</field></shadow></value></block>', Toolbox.colourCategory);
+
+Toolbox.variableCategory = Toolbox.categories[6];
+
+Toolbox.addBlock('<block type="variables_get"></block>', Toolbox.variableCategory);
+Toolbox.addBlock('<block type="variables_set"></block>', Toolbox.variableCategory);
+Toolbox.addBlock('<block type="variables_set"><value name="VALUE"><block type="variables_set_type"></block></value></block>', Toolbox.variableCategory);
+Toolbox.addBlock('<block type="variables_set_type"></block>', Toolbox.variableCategory);
 
 Toolbox.componentCategory = Toolbox.categories[8];
 

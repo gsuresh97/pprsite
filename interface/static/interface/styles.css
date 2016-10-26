@@ -105,6 +105,11 @@ body{
 	/*right: 0*/
 }
 
+.indexContent{
+	/*width: 100px;*/
+	min-height: 100px;
+}
+
 .menuitem {
     color: black;
     padding: 12px 16px;

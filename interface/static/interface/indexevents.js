@@ -16,6 +16,13 @@ function onParameterNameChange(event) {
                         this.setHelpUrl('http://www.example.com/');
                     }
                 };
+                Blockly.Arduino['input' + event.name.substring(10)] = function(){
+
+                    // console.log(event.newValue);
+                    // return "476287549873658763485";
+                    this.codeName = event.newValue;
+                    return [event.newValue, Blockly.Arduino.ORDER_ATOMIC];
+                }
                 break;
             default:
                 break;
@@ -54,14 +61,18 @@ function onComponentModify(event) {
                         // mutator blocks for component
                         init: function() {
                             this.appendDummyInput()
-                                .appendField("Input name");
+                                .appendField("Input name" + inputCount);
                             this.setOutput(true, null);
                             this.setColour(180);
                             this.setTooltip('');
                             this.setHelpUrl('http://www.example.com/');
                         }
                     };
-
+                    Blockly.Arduino['input' + inputCount] = function(){
+                        // return "bfsfbjdhbjdhfbgjkdhb";
+                        this.codeName = "name" + inputCount;
+                        return ["name" + inputCount, Blockly.Arduino.ORDER_ATOMIC];
+                    }
                     inputCount++;
                     break;
                 default:
@@ -79,7 +90,8 @@ function onInputOutputDelete(event) {
         var tree = event.oldXml;
 
         var block = tree.getAttribute('type');
-        var name = tree.childNodes[0].innerText;
+        if (tree.childNodes[0])
+            var name = tree.childNodes[0].innerText;
     }
 }
 

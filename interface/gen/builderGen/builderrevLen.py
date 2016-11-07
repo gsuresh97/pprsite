@@ -1,0 +1,6 @@
+c = Component()
+c.addSubcomponent("rev", "ReverseString")
+c.addSubcomponent("len", "Len")
+c.addConnection(("len", "inStr"), ("rev", "outStr"))
+c.inheritInterface("inStr", ("rev", "inStr"))
+c.toYaml("library/revLen.yaml")

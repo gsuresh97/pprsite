@@ -57,7 +57,7 @@ function onBlockAddedToWorkspace(event) {
 
 function onBlockNameChange(event) {
     var block = workspace.getBlockById(event.blockId)
-    if (block && event.type == Blockly.Events.CHANGE && block.type.indexOf("\\") < 0 && event.name == "NAME") {
+    if (block && event.type == Blockly.Events.CHANGE && block.type!= "component_create" && block.type.indexOf("\\") < 0 && event.name == "NAME") {
         if(event.newValue.indexOf("|") >= 0 || event.newValue.indexOf("\\") >= 0){
             alert("Do not include '|' or '\\' in the component names.");
             block.setFieldValue(event.oldValue, "NAME");
@@ -94,7 +94,6 @@ function onBlockNameChange(event) {
 function onComponentDelete(event){
     if (event.type == Blockly.Events.DELETE) {
         var tree = event.oldXml;
-        console.log(tree);
         var block = tree.getAttribute('type');
         var name;
         if(tree.childNodes[0]){

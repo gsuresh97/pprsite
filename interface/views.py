@@ -97,11 +97,9 @@ def recall_session(request):
 
 def export_code(request):
     code = request.body
-    print code
-    declare = code[0:code.find("void ")]
+    declare = code[0:code.find("void ")].strip()
     # print declare
     code = code[code.find("op() {") + 9:]
-    print code
     # Extract Class Name
     classNameIndex = code.index("|", 0)
     className = code[0:classNameIndex]
@@ -133,16 +131,89 @@ def export_code(request):
     component += "\n\n\n"
 
     code = code[code.find("##") + 2:]
-    compCode = code[0: code.find("##")]
+    compCode = code[0: code.find("##")].strip() + "\n"
     code = code[code.find("##")  +2:]
 
     inputs = []
     outputs = {}
     while (code.find("|")>0):
-        outputs[code[0:code.find("|")]] = code[code.find("|") + 1: code.find("|", code.find("|") + 1)]
+        bar1 = code.find("|")
+        bar2 = code.find("|", code.find("|") + 1)
+        outputs[code[0:bar1]] = code[bar1 + 1: bar2]
+        code = code[bar2+1:]
 
-    print outputs
-    # code = code.find()
+    while (code.find("^")>0):
+        caret = code.find("^")
+        inputs.append(code[:caret])
+        code = code[caret+1:]
+
+    blines = declare.split("\n")
+    #name mangle variable names here
+    types = {"int":1,"char":1, "String": 1, "boolean":1, "float":1}
+    def isType(tp):
+        return (types[tp] is 1)
+
+    variables = {}
+    lines = []
+    for l in blines:
+        t = l.strip().split(" ", 1)
+        if isType(t[0].strip()):
+            l = t[0] + " {}" +t[1]
+            variables[t[1][:-1]] = 1
+        lines.append(l)
+
+    # print variables
+
+    dCode = ""
+    for i in lines:
+        # if variables[i[:-1].split()[1]]:
+        if "{}" in i:
+            dCode += "\t\t\t\t\t\"" + i.strip() + "\\n\".format(name) \n"
+        else:
+            dCode += "\t\t\t\t\t\"" + i.strip() + "\\n\"\n"
+
+    lines = compCode.split("\n")
+    cCode = ""
+    lines.remove("")
+    for i in range(len(lines)):
+        modVar = (False, "")
+        for j in variables.keys():
+            if j in lines[i]:
+                modVar = (True, j)
+        if i == len(lines) - 1:
+            if modVar[0]:
+                segs = lines[i].split(modVar[1] + " ")
+                pr = segs[0]
+                fm = 0
+                for j in segs[1:]:
+                    pr += " {}" + modVar[1]
+                    fm = fm+1
+                fms = ""
+                for i in range(fm - 1):
+                    fms += "name, "
+                fms += "name"
+                cCode += "\t\t\t\t\t\"" + pr.strip() + "\\n\".format({})\n".format(fms)
+            else:
+                cCode += "\t\t\t\t\t\"" + lines[i].strip() + "\\n\"\n"
+        else:
+            if modVar[0]:
+                segs = lines[i].split(modVar[1] + " ")
+                pr = segs[0]
+                fm = 0
+                for j in segs[1:]:
+                    pr += " {}" +  + modVar[1]
+                    fm = fm+1
+                fms = ""
+                for i in range(fm - 1):
+                    fms += "name, "
+                fms += "name"
+                cCode += "\t\t\t\t\t\"" + pr.strip() + "\\n\".format({}) + \\\n".format(fms)
+            else:
+                cCode += "\t\t\t\t\t\"" + lines[i].strip() + "\\n\".format({}) + \\\n".format(fms)
+
+
+    # print outputs
+    # print inputs
 
     # Declare class
     component += "class {}(CodeComponent):\n\n".format(className)
@@ -153,25 +224,30 @@ def export_code(request):
     component += "\t\tname = self.getName()\n\n"
     component += "\t\tself.meta = {\n"
     component += "\t\t\t\"arduino\": {\n"
+
+    # code
     component += "\t\t\t\t\"code\": {\n"
-    component += "\"" + declare
-    component += compCode  + "\""
-    component += "\t\t\t\"}\\n\",\n"
-    component += "\t\t\t\"inputs\": {\n"
-    component += "\"inputs\": { \n \\ \
-        \"inStr\": \"inStr\"  \n \\ \
-        },  \n \\ \
-        \"outputs\": {  \n \\ \
-        \"reversed\": \""
-    # },
-    component += "\t\t\"declarations\": {\n\n"
-    component += "\t\t},\n"
-    component += "\t\t\"needs\": set()\n"
-    component += "}\n}\n\n"
+    component += cCode
+    component += "\t\t\t\t},\n\n"
 
+    # inputs
+    component += "\t\t\t\t\"inputs\": {\n"
+    for i in inputs:
+        component += "\t\t\t\t\t\"" + i + "\": \"" + i + "\",\n"
+    component += "\t\t\t\t},\n\n"
 
+    # outputs
+    component += "\t\t\t\t\"outputs\": {\n"
+    for k, v in outputs.iteritems():
+        component += "\t\t\t\t\t\"" + k + "\" : \"" + v + "\"\n"
+    component += "\t\t\t\t},\n\n"
 
+    component += "\t\t\t\t\"declarations\": {\n"
+    component += dCode
+    component += "\t\t\t\t},\n\n"
 
+    component += "\t\t\t\t\"needs\": set()\n"
+    component += "\t\t\t}\n\t\t}\n\n"
 
     component += "\tdef define(self, **kwargs):\n"
     component += "\t\tCodeComponent.define(self, **kwargs)\n"
@@ -185,13 +261,16 @@ def export_code(request):
     component += "\tpass\n\n"
 
 
+    # builderPath = os.path.join(os.getcwd(), "interface/gen/builderGen/")
+    componentPath = os.path.join(os.getcwd(), "interface/gen/componentGen/")
+    # if not os.path.exists(builderPath):
+    #     os.makedir(builderPath)
+    if not os.path.exists(componentPath):
+        os.makedirs(componentPath)
 
-
-    # for p, count in port.iteritems():
-    #     for c in range(count):
-    #         varName = p.lower() + str(c + 1)
-    #         component += "\t\tself.addInterface(\"{}\", {}(self, name))\n".format(
-    #             varName, p)
+    cmpath = os.path.join(componentPath, className + ".py")
+    cmFile = open(cmpath, 'wb', 0)
+    cmFile.write(component)
 
     print component
 
@@ -201,11 +280,13 @@ def export_code(request):
 def export_builder(request):
     code = request.body
     code = code[34:]
-    print code
 
+    cName = code[0:code.find("|")].strip()
+    code = code[code.find("|")+3:]
     build = "c = Component()\n"
 
     connections = []
+    inherit = []
 
     while(code.find('#') > 0):
         classTypeIndex = code.index("|", 0)
@@ -216,30 +297,50 @@ def export_builder(request):
         className = code[0:classIndex]
         code = code[classIndex + 1:]
 
-        varNameIndex = code.index("\\", 0)
-        varName = code[0:varNameIndex]
-        code = code[varNameIndex + 1:]
+        inputCountIndex = code.index("|", 0)
+        inputCount = code[0:inputCountIndex]
+        code = code[inputCountIndex + 1:]
 
-        outNameIndex = code.index("_", 0)
-        outName = code[0:outNameIndex]
-        code = code[outNameIndex + 1:]
+        for i in range(int(inputCount)):
+            varNameIndex = code.index("\\", 0)
+            varName = code[0:varNameIndex]
+            code = code[varNameIndex + 1:]
 
-        outTypeIndex = code.index(">", 0)
-        outType = code[0:outTypeIndex]
-        code = code[outTypeIndex + 1:]
+            outNameIndex = code.index("_", 0)
+            outName = code[0:outNameIndex]
+            code = code[outNameIndex + 1:]
 
-        connections.append([className, varName, outName, outType])
+            outTypeIndex = code.index(">", 0)
+            outType = code[0:outTypeIndex]
+            code = code[outTypeIndex + 1:]
+
+            if "inin" in outName:
+                inherit.append([varName, className, varName])
+            else:
+                connections.append([className, varName, outName, outType])
+
         build += "c.addSubcomponent(\"{}\", \"{}\")\n".format(className, classType)
         code = code[1:]
 
     for i in connections:
-        print i
         build += "c.addConnection((\"" + i[0] + "\", \"" + \
             i[1] + "\"), (\"" + i[2] + "\", \"" + i[3] + "\"))\n"
-        # .format(
-        # i[0], i[1], i[2], i[3])
+    for i in inherit:
+        build += "c.inheritInterface(\"" + i[0] + "\", (\"" + \
+            i[1] + "\", \"" + i[2] + "\"))\n"
 
-    build += "c.toYaml(\"library/Component.yaml\")"
+    build += "c.toYaml(\"library/{}.yaml\")".format(cName)
+
+    buildPath = os.path.join(os.getcwd(), "interface/gen/builderGen/")
+    if not os.path.exists(buildPath):
+        os.makedirs(buildPath)
+
+    blpath = os.path.join(buildPath, "builder" + cName + ".py")
+    blFile = open(blpath, 'wb', 0)
+    blFile.write(build)
+
+
+
 
     print build
 

@@ -10,6 +10,8 @@ function getCode(){
     }
 }
 
+
+
 Blockly.Arduino.component_create = function() {
     var code = '';
     code += (this.getFieldValue("NAME") + "|");
@@ -50,7 +52,6 @@ Blockly.Arduino.component_create = function() {
     code += "##";
     for(var i = 0; i < this.outputCount; i++)
         code += this.getFieldValue("OUTPUT_NAME" + i) + "|" + Blockly.Arduino.valueToCode(this, "OUT"+i) + '|';
-    code += "^"
     for(var i = 0; i < this.inputCount; i++)
         code += this.getFieldValue("INPUT_NAME" + i) + "^"
 

@@ -99,5 +99,8 @@ Toolbox.incrementBlock = function(block, count, category) {
     Toolbox.updateToolbox();
 }
 
+Toolbox.addEmptyCategory("Other Blocks", toolboxXML);
+
 //populate Toolbox with categories
 Toolbox.categories = toolboxXML.getElementsByTagName("category");
+Toolbox.addEmptyBlock("inherit_input", Toolbox.categories[3])

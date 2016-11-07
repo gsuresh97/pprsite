@@ -68,8 +68,10 @@ class CustomBlockFile:
             # print ET.dump(self.tree)
         self.initFile.write("var toolbox = '" +
                             ET.tostring(self.tree) + "';\n")
+
         self.initFile.write(
             "var workspace = Blockly.inject('{}', {{toolbox: toolbox}});\n".format("blocklyDiv"))
+        self.initFile.write("Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);\n")
         # self.initFile.write(
         #     'Blockly.Xml.domToWorkspace(document.getElementById(\'startBlocks\'), workspace);\n')
 
@@ -276,6 +278,7 @@ class CustomBlockFile:
         #     "\tBlockly.Arduino['{}0'] = function() {{\n".format(name + "|"))
         self.pccFile.write("\t\tvar code = this.name + '|';\n")
         self.pccFile.write("\t\tcode += (this.getFieldValue('NAME') + '|');\n")
+        self.pccFile.write("\t\tcode += (this.inputs.length + '|');\n")
         self.pccFile.write(
             "\t\tfor(var i = 0; i < this.inputs.length; i++){\n")
         self.pccFile.write("\t\t\tcode += this.inputs[i];\n")
@@ -286,19 +289,9 @@ class CustomBlockFile:
 
         self.pccFile.write("\t\t}\n\n")
 
-        # self.pccFile.write("\t\tif(this.outputs){\n")
-        # self.pccFile.write(
-        #     "\t\t\tfor(var i = 0; i < this.outputs.length; i++){\n")
-        # self.pccFile.write("\t\t\t\tcode += this.outputs[i];\n")
-        # self.pccFile.write("\t\t\t\tcode += '\\\\';\n")
-        # self.pccFile.write(
-        #     "\t\t\t\tcode += Blockly.Arduino.valueToCode(this, this.outputs[i]);\n")
-        # self.pccFile.write("\t\t\t\tcode += '|';\n")
-        # self.pccFile.write("\t\t\t}\n")
-        # self.pccFile.write("\t\t}\n\n")
-
         self.pccFile.write(
-            "\t\treturn [code, Blockly.Arduino.ORDER_NONE];\n")
+            "\t\treturn code;\n")
+            # "\t\treturn [code, Blockly.Arduino.ORDER_NONE];\n")
 
         self.pccFile.write("\t}\n")
 

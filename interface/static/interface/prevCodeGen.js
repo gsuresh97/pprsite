@@ -1,3 +1,42 @@
+Blockly.Arduino.inherit_input = function(){
+    return ["inin_>", Blockly.Arduino.ORDER_NONE]
+}
+
+Blockly.Arduino.component_create = function() {
+    var code = '';
+    code += (this.getFieldValue("NAME") + "|");
+    code += Blockly.Arduino.statementToCode(this, "CODE");
+
+
+    for(var i =0; i < this.outputCount; i++){
+        code += Blockly.Arduino.valueToCode(this, "OUT" + i) + "^";
+    }
+    // var size = 0;
+    // var p = "";
+    //
+    // for(var port in portSet){
+    //     size++;
+    //     p += (port + "\\" + portSet[port] + "|");
+    // }
+    //
+    // code += (size + "|");
+    // code += p;
+    //
+    // code += "##";
+    // code += Blockly.Arduino.statementToCode(this, "CODE");
+    //
+    // code += "##";
+    // for(var i = 0; i < this.outputCount; i++)
+    //     code += this.getFieldValue("OUTPUT_NAME" + i) + "|" + Blockly.Arduino.valueToCode(this, "OUT"+i) + '|';
+    // for(var i = 0; i < this.inputCount; i++)
+    //     code += this.getFieldValue("INPUT_NAME" + i) + "^"
+
+
+
+    return [code, Blockly.Arduino.ORDER_NONE]
+}
+
+
 function exportYaml(){
     var xhttp = new XMLHttpRequest();
     xhttp.name = "code";

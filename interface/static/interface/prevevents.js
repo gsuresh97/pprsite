@@ -57,34 +57,39 @@ function onBlockAddedToWorkspace(event) {
 
 function onBlockNameChange(event) {
     var block = workspace.getBlockById(event.blockId)
-    if (block && event.type == Blockly.Events.CHANGE && block.type!= "component_create" && block.type.indexOf("\\") < 0 && event.name == "NAME") {
+
+    if (block && event.type == Blockly.Events.CHANGE && block.type!= "component_create" && block.type!= "inherit_input"&& block.type.indexOf("\\") < 0 && event.name == "NAME") {
         if(event.newValue.indexOf("|") >= 0 || event.newValue.indexOf("\\") >= 0){
             alert("Do not include '|' or '\\' in the component names.");
             block.setFieldValue(event.oldValue, "NAME");
             return;
         }
-        var newName = event.newValue;
+
 
         // change the name of the category
-        block.cat.setAttribute("name", newName);
+        block.cat.setAttribute("name", event.newValue);
 
         var blockName = block.type.substring(0, block.type.indexOf("|"));
         var blockNumber = parseInt(block.type.substring(block.type.indexOf("|") + 1, block.type.length), 10);
 
         // change the output blocks, if any exist, to  reflect the name change
         for (var i = 0; Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i]; i++) {
+            // var newName = "";
+            var newName = event.newValue.toString();
             var outName = Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i].outputName;
             var outType = Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i].outputType;
+
             Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i] = {};
 
-            Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i].init = function() {
-                this.appendDummyInput().appendField(newName + " -> " + outName);
-                this.setOutput(true, outType);
-                this.setColour(180);
-            };
             Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i].name = newName;
             Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i].outputType = outType;
             Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i].outputName= outName;
+            Blockly.Blocks[blockName + "|" + blockNumber + "\\" + i].init = function() {
+                this.appendDummyInput().appendField(this.name + " -> " + this.outputName );
+                this.setOutput(true, null);
+                this.setColour(180);
+            };
+
         }
 
         Toolbox.updateToolbox();

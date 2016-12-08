@@ -17,11 +17,8 @@ function onParameterNameChange(event) {
                     }
                 };
                 Blockly.Arduino['input' + event.name.substring(10)] = function(){
-
-                    // console.log(event.newValue);
-                    // return "476287549873658763485";
-                    this.codeName = event.newValue;
-                    return [event.newValue, Blockly.Arduino.ORDER_ATOMIC];
+                    this.codeName = event.newValue.trim();
+                    return ["<<"+event.newValue.trim()+mangler+">>", Blockly.Arduino.ORDER_ATOMIC];
                 }
                 break;
             default:
@@ -71,7 +68,7 @@ function onComponentModify(event) {
                     Blockly.Arduino['input' + inputCount] = function(){
                         // return "bfsfbjdhbjdhfbgjkdhb";
                         this.codeName = "name" + inputCount;
-                        return ["name" + inputCount, Blockly.Arduino.ORDER_ATOMIC];
+                        return ["<<name"+mangler+">>" + inputCount, Blockly.Arduino.ORDER_ATOMIC];
                     }
                     inputCount++;
                     break;

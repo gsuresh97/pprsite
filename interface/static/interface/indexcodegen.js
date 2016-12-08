@@ -51,9 +51,9 @@ Blockly.Arduino.component_create = function() {
 
     code += "##";
     for(var i = 0; i < this.outputCount; i++)
-        code += this.getFieldValue("OUTPUT_NAME" + i) + "|" + Blockly.Arduino.valueToCode(this, "OUT"+i) + '|';
+        code += this.getFieldValue("OUTPUT_NAME" + i) + mangler + "|" + Blockly.Arduino.valueToCode(this, "OUT"+i) + '|' + Blockly.Arduino.valueToCode(this, "OUT_PORT" + i, Blockly.Arduino.ORDER_ATOMIC) + "|";
     for(var i = 0; i < this.inputCount; i++)
-        code += this.getFieldValue("INPUT_NAME" + i) + "^"
+        code += this.getFieldValue("INPUT_NAME" + i) + mangler + "%" + Blockly.Arduino.valueToCode(this, "INP_PORT" + i, Blockly.Arduino.ORDER_ATOMIC) + "^";
 
 
 

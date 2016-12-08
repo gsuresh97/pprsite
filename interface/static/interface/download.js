@@ -1,6 +1,10 @@
 function download(filename, text) {
     var element = document.createElement('a');
+
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    console.log(element);
+    console.log(element.getAttribute("href").length);
+    // element.setAttribute('href', 'data:text/plain;charset=utf-8,' + text);
     element.setAttribute('download', filename);
 
     element.style.display = 'none';

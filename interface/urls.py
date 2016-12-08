@@ -17,6 +17,9 @@ urlpatterns = [
     url(r'^prevblocks/export_builder/$',
         views.export_builder, name='exportbuilder'),
 
+    # ex: /interface/get_code
+    url(r'^prevblocks/(?P<code>.+)$', views.get_code, name='getcode'),
+
     # ex: /interface/5/results/
     # url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'),
     # ex: /interface/5/vote/

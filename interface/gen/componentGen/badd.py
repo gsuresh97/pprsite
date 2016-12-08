@@ -7,7 +7,7 @@ from svggen.api.ports.CodePort import OutIntPort
 
 
 
-class add(CodeComponent):
+class badd(CodeComponent):
 
 	def __init__(self,  yamlFile=None, **kwargs):
 		CodeComponent.__init__(self, yamlFile, **kwargs)
@@ -15,21 +15,19 @@ class add(CodeComponent):
 
 		self.meta = {
 			"arduino": {
-				"code": "" + \
-					"@@name@@item = (int)(a@@name@@ + b@@name@@);\n"
+				"code": "@@name@@item = (int)(<<a@@name@@>> + <<b@@name@@>>);\n"
 				,
 
 				"inputs": {
-					"a": None,
-					"b": None,
+					"a@@name@@": None,
+					"b@@name@@": None,
 				},
 
 				"outputs": {
-					"c" : "OutIntPort"
+					"c@@name@@" : "@@name@@item"
 				},
 
-				"declarations": "" + \
-					"int @@name@@item;\n"
+				"declarations":  "int @@name@@item;\n"
 				,
 
 				"needs": set()
@@ -38,11 +36,9 @@ class add(CodeComponent):
 
 	def define(self, **kwargs):
 		CodeComponent.define(self, **kwargs)
-		self.addInterface("inPort0", InIntPort(self, "inPort0", "a"))
-		self.addInterface("inPort1", InIntPort(self, "inPort1", "b"))
-		self.addInterface("outPort0", @@name@@item(self, "outPort0", "c"))
-		self.addInterface()
-		self.addInterface()
+		self.addInterface("inPort0", InIntPort(self, "inPort0", "a@@name@@"))
+		self.addInterface("inPort1", InIntPort(self, "inPort1", "b@@name@@"))
+		self.addInterface("outPort0", OutIntPort(self, "outPort0", "c@@name@@"))
 
 	def assemble(self):
 		CodeComponent.assemble(self)

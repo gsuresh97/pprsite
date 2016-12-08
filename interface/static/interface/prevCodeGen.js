@@ -1,5 +1,5 @@
 Blockly.Arduino.inherit_input = function(){
-    return ["inin_>", Blockly.Arduino.ORDER_NONE]
+    return ["inin_" + this.getFieldValue('NAME') + ">", Blockly.Arduino.ORDER_NONE]
 }
 
 Blockly.Arduino.component_create = function() {
@@ -9,35 +9,13 @@ Blockly.Arduino.component_create = function() {
 
 
     for(var i =0; i < this.outputCount; i++){
-        code += Blockly.Arduino.valueToCode(this, "OUT" + i) + "^";
+        code += Blockly.Arduino.valueToCode(this, "OUT" + i) + this.getFieldValue("OUTPUT_NAME"+i) + "^";
     }
-    // var size = 0;
-    // var p = "";
-    //
-    // for(var port in portSet){
-    //     size++;
-    //     p += (port + "\\" + portSet[port] + "|");
-    // }
-    //
-    // code += (size + "|");
-    // code += p;
-    //
-    // code += "##";
-    // code += Blockly.Arduino.statementToCode(this, "CODE");
-    //
-    // code += "##";
-    // for(var i = 0; i < this.outputCount; i++)
-    //     code += this.getFieldValue("OUTPUT_NAME" + i) + "|" + Blockly.Arduino.valueToCode(this, "OUT"+i) + '|';
-    // for(var i = 0; i < this.inputCount; i++)
-    //     code += this.getFieldValue("INPUT_NAME" + i) + "^"
-
-
-
     return [code, Blockly.Arduino.ORDER_NONE]
 }
 
 
-function exportYaml(){
+function exportCodeComp(){
     var xhttp = new XMLHttpRequest();
     xhttp.name = "code";
     xhttp.open("POST", "export_builder/", true);
@@ -62,4 +40,27 @@ function printYaml() {
     //     console.log(err);
     //     window.alert("Please remove all blocks which are not arduino compatible. These are the ones that are disabled in the toolbar.");
     // }
+}
+
+function getCode(){
+    console.log(encodeURIComponent(printYaml()));
+    window.open(printYaml());
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.name = "code";
+    xhttp.open("POST", "/interface/get_code/", true);
+    // xhttp.responseType = "arraybuffer"
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            window.open(this.response);
+            console.log(this.getAllResponseHeaders());
+            console.log(this.responseType);
+            console.log(this.response);
+            // download("name.zip", this.response)
+            console.log(this.response.length);
+        }
+    };
+    var c = printYaml();
+    console.log(c);
+    xhttp.send(c);
 }

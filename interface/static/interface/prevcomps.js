@@ -15,7 +15,8 @@ Blockly.Blocks['component_output'] = {
 Blockly.Blocks['inherit_input'] = {
     init: function() {
         this.appendDummyInput()
-            .appendField("Inherit Input");
+            .appendField("Inherit Input")
+            .appendField(new Blockly.FieldTextInput("name"), "NAME");
         this.setOutput(true, null);
         this.setColour(180);
         this.setTooltip('');

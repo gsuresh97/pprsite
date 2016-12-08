@@ -69,6 +69,7 @@ class CustomBlockFile:
         self.initFile.write("var toolbox = '" +
                             ET.tostring(self.tree) + "';\n")
 
+
         self.initFile.write(
             "var workspace = Blockly.inject('{}', {{toolbox: toolbox}});\n".format("blocklyDiv"))
         self.initFile.write("Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);\n")
@@ -155,7 +156,7 @@ class CustomBlockFile:
         self.blockFile.write(
             "\t\t\tthis.appendDummyInput().appendField(\"{}\");\n".format("Block Name 0" + "->" + name))
         self.blockFile.write(
-            "\t\t\tthis.setOutput(true, \"{}\");\n".format(valueType))
+            "\t\t\tthis.setOutput(true, {});\n".format("null"))
         self.blockFile.write("\t\t\tthis.setColour(180);\n")
         self.blockFile.write("\t\t},\n")
         self.blockFile.write("\t\toutputType:'{}',\n".format(valueType))
@@ -285,9 +286,10 @@ class CustomBlockFile:
         self.pccFile.write("\t\t\tcode += '\\\\';\n")
         self.pccFile.write(
             "\t\t\tcode += Blockly.Arduino.valueToCode(this, this.inputs[i], Blockly.Arduino.ORDER_NONE);\n")
-        self.pccFile.write("\t\t\tcode += '#';\n")
+
 
         self.pccFile.write("\t\t}\n\n")
+        self.pccFile.write("\t\tcode += '#';\n")
 
         self.pccFile.write(
             "\t\treturn code;\n")

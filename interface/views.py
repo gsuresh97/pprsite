@@ -342,8 +342,8 @@ def get_code(request, **kwargs):
 
     response['Content-Disposition'] = 'attachment; filename='+cName+'.zip'
 
-    # deleteDir(cName)
-
+    deleteDir(cName)
+    os.remove(cName + ".zip")
 
     return response
 
